@@ -1,72 +1,160 @@
-﻿Console.WriteLine("Выберите программу которую хотите запустить:");
-int prog = 0;
-while (prog != 4)
+﻿ConsoleKeyInfo key;
+int days = 16;
+DateTime date = new DateTime(2023, 10, 16);
+Console.WriteLine(date.ToShortDateString());
+int pos = 1;
+do
 {
-    Console.WriteLine();
-    Console.WriteLine("1 - Угадай число ");
-    Console.WriteLine("2 - Таблица умножения ");
-    Console.WriteLine("3 - Вывести делители числа ");
-    Console.WriteLine("4 - Закрыть программу ");
-    prog = Convert.ToInt32(Console.ReadLine());
-    if (prog == 1)
+    Console.SetCursorPosition(0, pos);
+    Console.WriteLine("->");
+
+    key = Console.ReadKey();
+
+    Console.SetCursorPosition(0, pos);
+    Console.WriteLine("  ");
+
+    if (key.Key == ConsoleKey.UpArrow && pos != 1)
+        pos--;
+    else if (key.Key == ConsoleKey.DownArrow && pos != 2)
+        pos++;
+    if (key.Key == ConsoleKey.LeftArrow)
     {
-        Console.WriteLine("Попробуй угадать число");
-        Random rand = new Random();
-        int a = rand.Next(100);
-        int b = 0;
-        while (a != b)
+        Console.SetCursorPosition(0, pos);
+        Console.Clear();
+        date = date.AddDays(-1);
+        days--;
+        Console.WriteLine(date.ToShortDateString());
+    }
+    if (key.Key == ConsoleKey.RightArrow)
+    {
+        Console.SetCursorPosition(0, pos);
+        Console.Clear();
+        date = date.AddDays(1);
+        days++;
+        Console.WriteLine(date.ToShortDateString());
+    }
+    if (days == 11)
+    {
+        Console.SetCursorPosition(0, 1);
+        Console.WriteLine("   1. Не сделать практическую вовремя");
+        Console.WriteLine("   2. Хотябы прийти на пары");
+        if (pos == 1)
         {
-            b = Convert.ToInt32(Console.ReadLine());
-            if (b > 0 && b < 101);
+            if (key.Key == ConsoleKey.Enter)
             {
-                if (b < a)
-                {
-                    Console.WriteLine("Надо больше");
-                }
-                if (b > a)
-                {
-                    Console.WriteLine("Надо меньше");
-                }
-                if (b == a)
-                {
-                    Console.WriteLine("Угадал!");
-                    Console.WriteLine();
-                }
+                Console.Clear();
+                Console.WriteLine("Я должен сделать практическую(по возможности)");
+                Console.WriteLine(date);
+                Console.WriteLine("Подробнее: НАПИСАТЬ ХОТЬ ЧТО ТО РАБОТАЮЩЕЕ(");
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine(date.ToShortDateString());
+            }
+        }
+        if (pos == 2)
+        {
+            if (key.Key == ConsoleKey.Enter)
+            {
+                Console.Clear();
+                Console.WriteLine("Прийти на пары");
+                Console.WriteLine(date);
+                Console.WriteLine("Подробнее: хотябы на одну");
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine(date.ToShortDateString());
             }
         }
     }
-    if (prog == 2)
+    if (days == 18)
     {
-        var mat = new int[10, 10];
-        for (int i = 0; i < 10; ++i)
+        Console.SetCursorPosition(0, 1);
+        Console.WriteLine("   1. Поесть в 2 часа");
+        if (pos == 1)
         {
-            for (int j = 0; j < 10; ++j)
+            if (key.Key == ConsoleKey.Enter)
             {
-                mat[i, j] = i * j;
+                Console.Clear();
+                Console.WriteLine("Суп в холодильнике");
+                Console.WriteLine(date);
+                Console.WriteLine("Подробнее: Разогреть в микроволновке, поесть, помыть за собой");
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine(date.ToShortDateString());
             }
-        }
-        for (int i = 0; i < 10; ++i)
-        {
-            for (int j = 0; j < 10; ++j)
-            {
-                Console.Write("{0, 10}", mat[i, j]);
-            }
-            Console.WriteLine();
         }
     }
-    if (prog == 3)
+    if (days == 20)
     {
-        Console.WriteLine("Введите число:");
-        int numer = Convert.ToInt32(Console.ReadLine());
-        int delitel = 0;
-        Console.Write("Делители: ");
-        while (delitel != numer)
+        Console.SetCursorPosition(0, 1);
+        Console.WriteLine("   1. Поиграть");
+        if (pos == 1)
         {
-            delitel++;
-            if (numer % delitel == 0)
+            if (key.Key == ConsoleKey.Enter)
             {
-                Console.Write(delitel + ", ");
+                Console.Clear();
+                Console.WriteLine("Сыграть в игру");
+                Console.WriteLine(date);
+                Console.WriteLine("Забрать ежедневный подарок");
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine(date.ToShortDateString());
+            }
+        }
+    }
+    if (days == 28)
+    {
+        Console.SetCursorPosition(0, 1);
+        Console.WriteLine("   1. Погулять");
+        Console.WriteLine("   2. Купить дошик в магазе");
+        if (pos == 1)
+        {
+            if (key.Key == ConsoleKey.Enter)
+            {
+                Console.Clear();
+                Console.WriteLine("Потрогать траву");
+                Console.WriteLine(date);
+                Console.WriteLine("Подробнее: Стать болле социальным(а хотя...)");
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine(date.ToShortDateString());
+            }
+        }
+    }
+    if (days == 30)
+    {
+        Console.SetCursorPosition(0, 1);
+        Console.WriteLine("   1. Сдать практос в последний день");
+        if (pos == 1)
+        {
+            if (key.Key == ConsoleKey.Enter)
+            {
+                Console.Clear();
+                Console.WriteLine("Если практос сделан то сдать");
+                Console.WriteLine(date);
+                Console.WriteLine("Подробнее: пушить в гитхаб");
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine(date.ToShortDateString());
+            }
+        }
+    }
+    if (days == 14)
+    {
+        Console.SetCursorPosition(0, 1);
+        Console.WriteLine("   1. Попрыгать на скакалке");
+        if (pos == 1)
+        {
+            if (key.Key == ConsoleKey.Enter)
+            {
+                Console.Clear();
+                Console.WriteLine("Скакалка");
+                Console.WriteLine(date);
+                Console.WriteLine("Подробнее: стать сильнее");
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine(date.ToShortDateString());
             }
         }
     }
 }
+while (key.Key != ConsoleKey.Escape);

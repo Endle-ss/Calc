@@ -1,160 +1,92 @@
-﻿ConsoleKeyInfo key;
-int days = 16;
-DateTime date = new DateTime(2023, 10, 16);
-Console.WriteLine(date.ToShortDateString());
-int pos = 1;
+﻿using System.Media;
+Console.WriteLine("Переключение между октавами F5 F6 F7");
+Console.WriteLine("Белые клавишы - символы от a по j");
+Console.WriteLine("Чёрные клавишы - символы от q по t");
+Console.WriteLine("Выход - эскейп");
+ConsoleKeyInfo key = Console.ReadKey();
+static void forhz(int hz)
+{
+    Console.Beep(hz, 200);
+}
+static int[] smenaOct(int oct)
+{
+    int[] fifth = new int[]
+    {
+         523, 554, 578, 623, 659, 698, 740, 784, 830, 880, 932, 987
+    };
+    int[] sixth = new int[]
+    {
+        1047, 1109, 1175, 1245, 1319, 1397, 1480, 1568, 1661, 1760, 1865, 1976
+    };
+    int[] seventh = new int[]
+    {
+         2093, 2217, 2349, 2489, 2637, 2794, 2960, 3136, 3322, 3520, 3729, 3951
+    };
+
+    if (oct == 5)
+    {
+        return fifth;
+    }
+    else if (oct == 6)
+    {
+        return sixth;
+    }
+    else if (oct == 7)
+    {
+        return seventh;
+    }
+    return fifth;
+    
+}
+
+ConsoleKeyInfo note;
+int[] oct = smenaOct(5);
 do
 {
-    Console.SetCursorPosition(0, pos);
-    Console.WriteLine("->");
-
-    key = Console.ReadKey();
-
-    Console.SetCursorPosition(0, pos);
-    Console.WriteLine("  ");
-
-    if (key.Key == ConsoleKey.UpArrow && pos != 1)
-        pos--;
-    else if (key.Key == ConsoleKey.DownArrow && pos != 2)
-        pos++;
-    if (key.Key == ConsoleKey.LeftArrow)
+    note = Console.ReadKey(true);
+    switch (note.Key)
     {
-        Console.SetCursorPosition(0, pos);
-        Console.Clear();
-        date = date.AddDays(-1);
-        days--;
-        Console.WriteLine(date.ToShortDateString());
+        case ConsoleKey.F5:
+            oct = smenaOct(5); break;
+        case ConsoleKey.F6:
+            oct = smenaOct(6); break;
+        case ConsoleKey.F7:
+            oct = smenaOct(7); break;
+        case ConsoleKey.A:
+            forhz(oct[0]);
+            break;
+        case ConsoleKey.Q:
+            forhz(oct[1]);
+            break;
+        case ConsoleKey.S:
+            forhz(oct[2]);
+            break;
+        case ConsoleKey.W:
+            forhz(oct[3]);
+            break;
+        case ConsoleKey.D:
+            forhz(oct[4]);
+            break;
+        case ConsoleKey.F:
+            forhz(oct[5]);
+            break;
+        case ConsoleKey.E:
+            forhz(oct[6]);
+            break;
+        case ConsoleKey.G:
+            forhz(oct[7]);
+            break;
+        case ConsoleKey.R:
+            forhz(oct[8]);
+            break;
+        case ConsoleKey.H:
+            forhz(oct[9]);
+            break;
+        case ConsoleKey.T:
+            forhz(oct[10]);
+            break;
+        case ConsoleKey.J:
+            forhz(oct[11]);
+            break;
     }
-    if (key.Key == ConsoleKey.RightArrow)
-    {
-        Console.SetCursorPosition(0, pos);
-        Console.Clear();
-        date = date.AddDays(1);
-        days++;
-        Console.WriteLine(date.ToShortDateString());
-    }
-    if (days == 11)
-    {
-        Console.SetCursorPosition(0, 1);
-        Console.WriteLine("   1. Не сделать практическую вовремя");
-        Console.WriteLine("   2. Хотябы прийти на пары");
-        if (pos == 1)
-        {
-            if (key.Key == ConsoleKey.Enter)
-            {
-                Console.Clear();
-                Console.WriteLine("Я должен сделать практическую(по возможности)");
-                Console.WriteLine(date);
-                Console.WriteLine("Подробнее: НАПИСАТЬ ХОТЬ ЧТО ТО РАБОТАЮЩЕЕ(");
-                Console.ReadKey();
-                Console.Clear();
-                Console.WriteLine(date.ToShortDateString());
-            }
-        }
-        if (pos == 2)
-        {
-            if (key.Key == ConsoleKey.Enter)
-            {
-                Console.Clear();
-                Console.WriteLine("Прийти на пары");
-                Console.WriteLine(date);
-                Console.WriteLine("Подробнее: хотябы на одну");
-                Console.ReadKey();
-                Console.Clear();
-                Console.WriteLine(date.ToShortDateString());
-            }
-        }
-    }
-    if (days == 18)
-    {
-        Console.SetCursorPosition(0, 1);
-        Console.WriteLine("   1. Поесть в 2 часа");
-        if (pos == 1)
-        {
-            if (key.Key == ConsoleKey.Enter)
-            {
-                Console.Clear();
-                Console.WriteLine("Суп в холодильнике");
-                Console.WriteLine(date);
-                Console.WriteLine("Подробнее: Разогреть в микроволновке, поесть, помыть за собой");
-                Console.ReadKey();
-                Console.Clear();
-                Console.WriteLine(date.ToShortDateString());
-            }
-        }
-    }
-    if (days == 20)
-    {
-        Console.SetCursorPosition(0, 1);
-        Console.WriteLine("   1. Поиграть");
-        if (pos == 1)
-        {
-            if (key.Key == ConsoleKey.Enter)
-            {
-                Console.Clear();
-                Console.WriteLine("Сыграть в игру");
-                Console.WriteLine(date);
-                Console.WriteLine("Забрать ежедневный подарок");
-                Console.ReadKey();
-                Console.Clear();
-                Console.WriteLine(date.ToShortDateString());
-            }
-        }
-    }
-    if (days == 28)
-    {
-        Console.SetCursorPosition(0, 1);
-        Console.WriteLine("   1. Погулять");
-        Console.WriteLine("   2. Купить дошик в магазе");
-        if (pos == 1)
-        {
-            if (key.Key == ConsoleKey.Enter)
-            {
-                Console.Clear();
-                Console.WriteLine("Потрогать траву");
-                Console.WriteLine(date);
-                Console.WriteLine("Подробнее: Стать болле социальным(а хотя...)");
-                Console.ReadKey();
-                Console.Clear();
-                Console.WriteLine(date.ToShortDateString());
-            }
-        }
-    }
-    if (days == 30)
-    {
-        Console.SetCursorPosition(0, 1);
-        Console.WriteLine("   1. Сдать практос в последний день");
-        if (pos == 1)
-        {
-            if (key.Key == ConsoleKey.Enter)
-            {
-                Console.Clear();
-                Console.WriteLine("Если практос сделан то сдать");
-                Console.WriteLine(date);
-                Console.WriteLine("Подробнее: пушить в гитхаб");
-                Console.ReadKey();
-                Console.Clear();
-                Console.WriteLine(date.ToShortDateString());
-            }
-        }
-    }
-    if (days == 14)
-    {
-        Console.SetCursorPosition(0, 1);
-        Console.WriteLine("   1. Попрыгать на скакалке");
-        if (pos == 1)
-        {
-            if (key.Key == ConsoleKey.Enter)
-            {
-                Console.Clear();
-                Console.WriteLine("Скакалка");
-                Console.WriteLine(date);
-                Console.WriteLine("Подробнее: стать сильнее");
-                Console.ReadKey();
-                Console.Clear();
-                Console.WriteLine(date.ToShortDateString());
-            }
-        }
-    }
-}
-while (key.Key != ConsoleKey.Escape);
+} while (note.Key != ConsoleKey.Escape);
